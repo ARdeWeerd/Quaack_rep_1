@@ -6,3 +6,11 @@ D:\Quaack_rep_1\Quaack\Quaack-data-interactie\bin\Debug\Quaack-domein.pdb
 D:\Quaack_rep_1\Quaack\Quaack-data-interactie\obj\x86\Debug\ResolveAssemblyReference.cache
 D:\Quaack_rep_1\Quaack\Quaack-data-interactie\obj\x86\Debug\Quaack-data-interactie.dll
 D:\Quaack_rep_1\Quaack\Quaack-data-interactie\obj\x86\Debug\Quaack-data-interactie.pdb
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\bin\Debug\Quaack-data-interactie.dll.config
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\bin\Debug\Quaack-data-interactie.dll
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\bin\Debug\Quaack-data-interactie.pdb
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\bin\Debug\Quaack-domein.dll
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\bin\Debug\Quaack-domein.pdb
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\obj\x86\Debug\Quaack-data-interactie.dll
+C:\Users\Edwin\Documents\GitHub\Quaack\Quaack-data-interactie\obj\x86\Debug\Quaack-data-interactie.pdb
