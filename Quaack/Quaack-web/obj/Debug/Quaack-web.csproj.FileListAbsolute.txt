@@ -1,0 +1,11 @@
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-web.dll
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-web.pdb
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-domein.dll
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-service.dll
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-data-interactie.dll
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-domein.pdb
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-service.pdb
+D:\Quaack_rep_1\Quaack\Quaack-web\bin\Quaack-data-interactie.pdb
+D:\Quaack_rep_1\Quaack\Quaack-web\obj\Debug\ResolveAssemblyReference.cache
+D:\Quaack_rep_1\Quaack\Quaack-web\obj\Debug\Quaack-web.dll
+D:\Quaack_rep_1\Quaack\Quaack-web\obj\Debug\Quaack-web.pdb

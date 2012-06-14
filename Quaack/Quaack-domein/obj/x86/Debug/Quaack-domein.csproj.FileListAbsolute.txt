@@ -1,0 +1,5 @@
+D:\Quaack_rep_1\Quaack\Quaack-domein\bin\Debug\Quaack-domein.dll
+D:\Quaack_rep_1\Quaack\Quaack-domein\bin\Debug\Quaack-domein.pdb
+D:\Quaack_rep_1\Quaack\Quaack-domein\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Quaack_rep_1\Quaack\Quaack-domein\obj\x86\Debug\Quaack-domein.dll
+D:\Quaack_rep_1\Quaack\Quaack-domein\obj\x86\Debug\Quaack-domein.pdb
