@@ -1,11 +1,16 @@
 ﻿/* DEFAULTS
 ----------------------------------------------------------*/
+.primary-1 { background-color: #086CA2 }
+.primary-2 { background-color: #235B79 }
+.primary-3 { background-color: #034569 }
+.primary-4 { background-color: #3C9DD0 }
+.primary-5 { background-color: #64AAD0 }
 
 body   
 {
-    background: #b6b7bc;
+    background: #64AAD0;
     font-size: .80em;
-    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    font-family: Verdana, "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, sans-serif;
     margin: 0px;
     padding: 0px;
     color: #696969;
@@ -41,7 +46,8 @@ h1, h2, h3, h4, h5, h6
 {
     font-size: 1.5em;
     color: #666666;
-    font-variant: small-caps;
+    /*font-variant: small-caps;*/
+    font-family: Verdana;
     text-transform: none;
     font-weight: 200;
     margin-bottom: 0px;
@@ -88,21 +94,47 @@ first child of the left and right table columns */
 
 .page
 {
-   /* width: 960px;*/
+    width: 800px;
     background-color: #fff;
     margin: 20px auto 0px auto;
     border: 1px solid #496077;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;  
 }
 
 .header
 {
     position: relative;
     margin: 0px;
-    padding: 0px;
-    background: #4b6c9e;
+    background: #303030;
     width: 100%;
+    /*min-height: 50px;*/
 }
 
+.header_content
+{
+    width: 800px;
+    margin: 0px auto;
+    min-height: 50px;
+}
+
+.header_content a
+{
+    /*float: left;*/
+    height: 50px;
+}
+
+.header_logo
+{
+    background-image: url('/Images/QuaackDuck-small2.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 50px;
+    width: 50px;
+    float: left;
+}
 .header h1
 {
     font-weight: 700;
@@ -195,6 +227,7 @@ fieldset
     margin: 1em 0px;
     padding: 1em;
     border: 1px solid #ccc;
+    border-radius: 15px;
 }
 
 fieldset p 
@@ -223,12 +256,14 @@ input.textEntry
 {
     width: 320px;
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 input.passwordEntry 
 {
     width: 320px;
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 div.accountInfo
@@ -259,6 +294,7 @@ div.accountInfo
     text-align: right;
     padding: 10px;
     color: White;
+    float: right;
 }
 
 .loginDisplay a:link
