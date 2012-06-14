@@ -6,6 +6,8 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
         About
+        <asp:PasswordRecovery ID="PasswordRecovery1" runat="server">
+        </asp:PasswordRecovery>
     </h2>
     <p>
         Put content here.

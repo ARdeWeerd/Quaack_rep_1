@@ -1,54 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Quaack_domein.model
 {
     public class Bericht
     {
-        private string bericht_kop;
-        private string bericht_inhoud;
-        private string bericht_auteur;
+        private string tekst;
+        private bool verwijderd;
+        private DateTime datumGeplaatst;
 
         private List<Bericht> reacties;
         private Bericht reactieOp;
 
-        public string Kop
+        private Profiel geplaatsDoor;
+        private Profiel verwijderdDoor;
+
+        public Profiel GeplaatsDoor
         {
-            get
-            {
-                return this.bericht_kop;
-            }
-            set
-            {
-                this.bericht_kop = value;
-            }
+            get { return geplaatsDoor; }
+            set { geplaatsDoor = value; }
+        }
+       
+
+        public Profiel VerwijderdDoor
+        {
+            get { return verwijderdDoor; }
+            set { verwijderdDoor = value; }
         }
 
-
-        public string Inhoud
+        public string Tekst
         {
-            get
-            {
-                return this.bericht_inhoud;
-            }
-            set
-            {
-                this.bericht_inhoud = value;
-            }
+            get { return this.tekst; }
+            set { this.tekst = value; }
         }
 
-        public string Auteur
+        public bool Verwijderd
         {
-            get
-            {
-                return this.bericht_auteur;
-            }
-            set
-            {
-                this.bericht_auteur = value;
-            }
+            get { return this.verwijderd; }
+            set { this.verwijderd = value; }
+
+        }
+
+        public DateTime DatumGeplaatst
+        {
+            get { return this.datumGeplaatst; }
+            set { this.datumGeplaatst = value; }
+        }
+
+        public List<Bericht> Reacties
+        {
+            get { return this.reacties; }
+            set { this.reacties = value; }
+        }
+
+        public Bericht ReactieOp
+        {
+            get { return this.reactieOp; }
+            set { this.reactieOp = value; }
         }
 
     }

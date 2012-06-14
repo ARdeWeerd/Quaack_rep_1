@@ -22,6 +22,7 @@ namespace Quaack_web
             List<Bericht> berichten = new List<Bericht>();
             try
             {
+                
                 berichten = ((BerichtenService)Application["berichtenService"]).find(UserIdTextBox.Text);
             }
             catch (ServiceException se)

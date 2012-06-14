@@ -36,9 +36,13 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="model\Bericht.cs" />
+    <Compile Include="model\Profiel.cs" />
+    <Compile Include="TestFriends.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

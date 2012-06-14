@@ -72,7 +72,7 @@ namespace Quaack_data_interactie.dao.impl
                 foreach (DataRow row in berichtenDataSet.Tables["Berichten"].Rows)
                 {
                     Bericht bericht = new Bericht();
-                    bericht.Kop = (string)row[0];
+                    bericht.Tekst = (string)row[0];
                     bericht.Inhoud = (string)row[1];
                     bericht.Auteur = (string)row[2];
                     result.Add(bericht);
