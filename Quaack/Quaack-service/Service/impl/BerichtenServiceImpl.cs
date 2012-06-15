@@ -50,7 +50,6 @@ namespace Quaack_service.Service.impl
             }
         }
 
-
         public List<Bericht> find(string userId)
         {
             //TODO rules implementeren, bijvoorbeeld check of userid bestaat
@@ -67,12 +66,26 @@ namespace Quaack_service.Service.impl
 
         public Bericht find(int bericht_id)
         {
-            throw new NotImplementedException();
+            //TODO denee00 aanroep naar dao
+            Bericht result = new Bericht();
+            result.Tekst = "testBericht vanuit servicelaag";
+            return result;
+
         }
 
-        public void save(Bericht bericht)
+        Result BerichtenService.save(Bericht bericht)
         {
-            throw new NotImplementedException();
+            return Result.newResultSucces();
+        }
+
+        public Result update(Bericht bericht)
+        {
+            return Result.newResultSucces();
+        }
+
+        public Result delete(Bericht bericht)
+        {
+            return Result.newResultSucces();
         }
     }
 }

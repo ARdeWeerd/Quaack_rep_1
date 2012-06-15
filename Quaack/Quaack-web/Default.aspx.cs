@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Quaack_service.Service;
 using Quaack_service.Service.impl;
 using Quaack_domein.model;
+using Quaack_web.Util;
 
 
 namespace Quaack_web
@@ -23,7 +24,7 @@ namespace Quaack_web
             try
             {
                 
-                berichten = ((BerichtenService)Application["berichtenService"]).find(UserIdTextBox.Text);
+                berichten = ServiceUtil.getBerichtenService(Application).find(UserIdTextBox.Text);
             }
             catch (ServiceException se)
             {
@@ -35,6 +36,12 @@ namespace Quaack_web
             }
             BerichtenGridView.DataSource = berichten;
             BerichtenGridView.DataBind();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Profiel profiel = ServiceUtil.getProfielService(Application).find(UserIdTextBox.Text);
+            testProfielTextBox.Text = profiel.Naam;
         }
     }
 }

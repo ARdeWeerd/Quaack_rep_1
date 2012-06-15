@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="model\Bericht.cs" />
     <Compile Include="model\Profiel.cs" />
+    <Compile Include="model\Result.cs" />
+    <Compile Include="model\ResultCode.cs" />
     <Compile Include="TestFriends.cs" />
   </ItemGroup>
   <ItemGroup>

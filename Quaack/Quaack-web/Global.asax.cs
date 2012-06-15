@@ -17,7 +17,10 @@ namespace Quaack_web
             BerichtenService berichtenService = BerichtenServiceImpl.Instance;
             Application["berichtenService"] = berichtenService;
 
-        }
+            ProfielService profielService = ProfielServiceImpl.Instance;
+            Application["profielService"] = profielService;
+
+       }
 
         void Application_End(object sender, EventArgs e)
         {

@@ -48,8 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Service\BerichtenService.cs" />
-    <Compile Include="Service\Exception\DaoException.cs" />
+    <Compile Include="Service\Exception\ServiceException.cs" />
     <Compile Include="Service\impl\BerichtenServiceImpl.cs" />
+    <Compile Include="Service\impl\ProfielServiceImpl.cs" />
+    <Compile Include="Service\ProfielService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
