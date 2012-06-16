@@ -32,7 +32,7 @@ namespace Quaack_service.Service.impl
         }
 
         /// <summary>
-        /// Propertie voor het verkrijgen van instantie van de class. Er is altijd maar 1 instantie (singleton)
+        /// Property voor het verkrijgen van instantie van de class. Er is altijd maar 1 instantie (singleton)
         /// </summary>
         /// <returns>de instantie van ProfielServiceImpl</returns>
         public static ProfielServiceImpl Instance

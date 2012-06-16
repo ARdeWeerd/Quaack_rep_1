@@ -4,7 +4,10 @@
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
-    <asp:CreateUserWizard ID="RegisterUser" runat="server" EnableViewState="false" OnCreatedUser="RegisterUser_CreatedUser">
+    <asp:CreateUserWizard ID="RegisterUser" runat="server" EnableViewState="false" 
+        OnCreatedUser="RegisterUser_CreatedUser" 
+        DuplicateEmailErrorMessage="Er bestaat al een profiel met dit emailadres." 
+        DuplicateUserNameErrorMessage="Deze gebruikersnaam bestaat al.">
         <LayoutTemplate>
             <asp:PlaceHolder ID="wizardStepPlaceholder" runat="server"></asp:PlaceHolder>
             <asp:PlaceHolder ID="navigationPlaceholder" runat="server"></asp:PlaceHolder>
@@ -13,57 +16,66 @@
             <asp:CreateUserWizardStep ID="RegisterUserWizardStep" runat="server">
                 <ContentTemplate>
                     <h2>
-                        Create a New Account
+                        Maak een nieuw profiel aan
                     </h2>
-                    <p>
-                        Use the form below to create a new account.
-                    </p>
-                    <p>
-                        Passwords are required to be a minimum of <%= Membership.MinRequiredPasswordLength %> characters in length.
-                    </p>
                     <span class="failureNotification">
                         <asp:Literal ID="ErrorMessage" runat="server"></asp:Literal>
                     </span>
-                    <asp:ValidationSummary ID="RegisterUserValidationSummary" runat="server" CssClass="failureNotification" 
-                         ValidationGroup="RegisterUserValidationGroup"/>
+                    <asp:ValidationSummary ID="RegisterUserValidationSummary" runat="server" CssClass="failureNotification"
+                        ValidationGroup="RegisterUserValidationGroup" />
                     <div class="accountInfo">
                         <fieldset class="register">
-                            <legend>Account Information</legend>
+                            <legend>Verplichte velden</legend>
                             <p>
                                 <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">User Name:</asp:Label>
                                 <asp:TextBox ID="UserName" runat="server" CssClass="textEntry"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" 
-                                     CssClass="failureNotification" ErrorMessage="User Name is required." ToolTip="User Name is required." 
-                                     ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
+                                    CssClass="failureNotification" ErrorMessage="Gebruikersnaam is verplicht." ToolTip="Gebruikersnaam is verplicht."
+                                    ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
                             </p>
                             <p>
-                                <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">E-mail:</asp:Label>
+                                <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">Emailadres:</asp:Label>
                                 <asp:TextBox ID="Email" runat="server" CssClass="textEntry"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" 
-                                     CssClass="failureNotification" ErrorMessage="E-mail is required." ToolTip="E-mail is required." 
-                                     ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email"
+                                    CssClass="failureNotification" ErrorMessage="Emailadres is verplicht." ToolTip="Emailadres is verplicht."
+                                    ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
                             </p>
                             <p>
-                                <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
+                                <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Wachtwoord:</asp:Label>
                                 <asp:TextBox ID="Password" runat="server" CssClass="passwordEntry" TextMode="Password"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" 
-                                     CssClass="failureNotification" ErrorMessage="Password is required." ToolTip="Password is required." 
-                                     ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
+                                <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
+                                    CssClass="failureNotification" ErrorMessage="Wachtwoord is verplicht." ToolTip="Wachtwoord is verplicht."
+                                    ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
                             </p>
                             <p>
-                                <asp:Label ID="ConfirmPasswordLabel" runat="server" AssociatedControlID="ConfirmPassword">Confirm Password:</asp:Label>
+                                <asp:Label ID="ConfirmPasswordLabel" runat="server" AssociatedControlID="ConfirmPassword">Bevestig wachtwoord:</asp:Label>
                                 <asp:TextBox ID="ConfirmPassword" runat="server" CssClass="passwordEntry" TextMode="Password"></asp:TextBox>
-                                <asp:RequiredFieldValidator ControlToValidate="ConfirmPassword" CssClass="failureNotification" Display="Dynamic" 
-                                     ErrorMessage="Confirm Password is required." ID="ConfirmPasswordRequired" runat="server" 
-                                     ToolTip="Confirm Password is required." ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword" 
-                                     CssClass="failureNotification" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match."
-                                     ValidationGroup="RegisterUserValidationGroup">*</asp:CompareValidator>
+                                <asp:RequiredFieldValidator ControlToValidate="ConfirmPassword" CssClass="failureNotification"
+                                    Display="Dynamic" ErrorMessage="Bevestiging wachtwoord is verplicht." ID="ConfirmPasswordRequired"
+                                    runat="server" ToolTip="Bevestiging wachtwoord is verplicht." ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password"
+                                    ControlToValidate="ConfirmPassword" CssClass="failureNotification" Display="Dynamic"
+                                    ErrorMessage="Wachtwoorden komen niet overeen." ValidationGroup="RegisterUserValidationGroup">*</asp:CompareValidator>
+                            </p>
+                        </fieldset>
+                        <fieldset class="register">
+                            <legend>Optionele velden</legend>
+                            <p>
+                                <asp:Label ID="ProfielschetsLabel" runat="server" AssociatedControlID="Profielschets">Profielschets:</asp:Label>
+                                <asp:TextBox ID="Profielschets" runat="server" CssClass="multiLineEntry" TextMode="MultiLine"></asp:TextBox>
+                            </p>
+                            <p>
+                                <asp:Label ID="AvatarLabel" runat="server" AssociatedControlID="Avatar">Avatar:</asp:Label>
+                                <asp:TextBox ID="Avatar" runat="server" CssClass="textEntry"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="AvatarURLValidator" runat="server"
+                                    ErrorMessage="Ongeldige avatarlocatie" ControlToValidate="Avatar"
+                                    ValidationExpression="http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?"
+                                    ValidationGroup="RegisterUserValidationGroup">*</asp:RegularExpressionValidator>
                             </p>
                         </fieldset>
                         <p class="submitButton">
-                            <asp:Button ID="CreateUserButton" runat="server" CommandName="MoveNext" Text="Create User" 
-                                 ValidationGroup="RegisterUserValidationGroup"/>
+                            <asp:Button ID="CreateUserButton" runat="server" CommandName="MoveNext" Text="Create User"
+                                ValidationGroup="RegisterUserValidationGroup" />
                         </p>
                     </div>
                 </ContentTemplate>
