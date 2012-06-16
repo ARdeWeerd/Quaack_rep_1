@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using Quaack_domein;
 using Quaack_domein.model;
+using Quaack_data_interactie;
+using Quaack_data_interactie.dao;
+using Quaack_data_interactie.dao.impl;
 
 namespace Quaack_service.Service.impl
 {
@@ -12,6 +15,7 @@ namespace Quaack_service.Service.impl
     /// </summary>
     public sealed class ProfielServiceImpl : ProfielService
     {
+        private ProfielDao profielDao;
 
         private static volatile ProfielServiceImpl instance;
 
@@ -19,12 +23,12 @@ namespace Quaack_service.Service.impl
 
         private ProfielServiceImpl()
         {
-           // if (this.berichtenDao == null)
+            if (this.profielDao == null)
             {
                 //instantie verkrijgen via singleton instance
-           //     this.berichtenDao = BerichtenDaoImpl.Instance;
+                this.profielDao = ProfielDaoImpl.Instance;
             }
- 
+
         }
 
         /// <summary>
@@ -50,34 +54,154 @@ namespace Quaack_service.Service.impl
 
         public Profiel find(string userId)
         {
-            Profiel profiel = new Profiel();
-            profiel.Naam = "testUserVanuitService";
-            return profiel;
+            try
+            {
+                return this.profielDao.find(userId);
+
+            }
+            catch (DaoException de)
+            {
+                throw new ServiceException(de.Message, de);
+            }
         }
 
         public Result save(Profiel profiel)
         {
-            return Result.newResultSucces();
+            try
+            {
+                Profiel p = this.profielDao.find(profiel.Naam);
+                if (p != null)
+                {
+                    return new Result(ResultCode.USERID_NOT_UNIQUE);
+                }
+                this.profielDao.save(profiel);
+                return Result.newResultSucces();
+            }
+            catch (DaoException de)
+            {
+                throw new ServiceException(de.Message, de);
+            }
         }
 
         public Result update(Profiel profiel)
         {
-            return Result.newResultSucces();
+            try
+            {
+                Profiel p = this.profielDao.find(profiel.Naam);
+                if (p == null)
+                {
+                    return new Result(ResultCode.USERID_NOT_FOUND);
+                }
+                //TODO alle velden die gewijzigd kunnen worden doorlopen
+                p.Profielschets = profiel.Profielschets;
+                p.AvatarLokatie = profiel.AvatarLokatie;
+                this.profielDao.update(p);
+                return Result.newResultSucces();
+            }
+            catch (DaoException de)
+            {
+                throw new ServiceException(de.Message, de);
+            }
         }
 
         public Result delete(string userId)
         {
-            return Result.newResultSucces();
+            try
+            {
+                Profiel p = this.profielDao.find(userId);
+                if (p == null)
+                {
+                    return new Result(ResultCode.USERID_NOT_FOUND);
+                }
+                p.Verwijderd = true;
+                this.profielDao.update(p);
+                return Result.newResultSucces();
+            }
+            catch (DaoException de)
+            {
+                throw new ServiceException(de.Message, de);
+            }
         }
 
         public Result blockReacties(string userId, Profiel userIdToBlock, bool blocked)
         {
-            return Result.newResultSucces();
+            try
+            {
+                //ophalen van de te bewerken data
+                Profiel user = this.profielDao.find(userId);
+                Profiel blockedUser = this.profielDao.find(userId);
+
+                if (user == null || blockedUser == null)
+                {
+                    return new Result(ResultCode.USERID_NOT_FOUND);
+                }
+                //bijwerken van de domeinobjecten
+                if (blocked)
+                {
+                    //gebruiker toevoegen aan de lijst met geblokkeere gebruikers
+                    // eerst checken of die bestaat
+                    if (!user.GeblokkeerdeGebruikers.Contains(blockedUser))
+                    {
+                        user.GeblokkeerdeGebruikers.Add(blockedUser);
+                    }
+                }
+                else
+                {
+                    if (user.GeblokkeerdeGebruikers.Contains(blockedUser))
+                    {
+                        user.GeblokkeerdeGebruikers.Remove(blockedUser);
+                    }
+                }
+                //save het resultaat
+                this.profielDao.update(user);
+                return Result.newResultSucces();
+            }
+            catch (DaoException de)
+            {
+                throw new ServiceException(de.Message, de);
+            }
         }
 
-        public Result blockAccount(string userId)
+        public Result blockAccount(string userId, bool block)
         {
-            return Result.newResultSucces();
+            try
+            {
+                Profiel p = this.profielDao.find(userId);
+                if (p == null)
+                {
+                    return new Result(ResultCode.USERID_NOT_FOUND);
+                }
+                p.TijdelijkGeblokkeerd = block;
+                this.profielDao.update(p);
+                return Result.newResultSucces();
+            }
+            catch (DaoException de)
+            {
+                throw new ServiceException(de.Message, de);
+            }
+        }
+
+        public List<string> findUsers(string searchPattern)
+        {
+            try
+            {
+                List<string> users = this.profielDao.findUsers(searchPattern);
+                //alleen degene tonen die niet removed zijn
+                List<string> nietVerwijderdeGebruikers = new List<string>();
+                foreach (string username in users)
+                {
+                    Profiel profiel = this.profielDao.find(username);
+                    if (!profiel.Verwijderd)
+                    {
+                        nietVerwijderdeGebruikers.Add(username);
+                    }
+                }
+                return nietVerwijderdeGebruikers;
+            }
+            catch (DaoException de)
+            {
+                throw new ServiceException(de.Message, de);
+            }
         }
     }
 }

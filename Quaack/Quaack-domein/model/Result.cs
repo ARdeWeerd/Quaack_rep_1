@@ -25,6 +25,10 @@ namespace Quaack_domein.model
                 case ResultCode.USERID_NOT_UNIQUE:
                     message = "Gebruikersnaam bestaat reeds";
                     break;
+                case ResultCode.USERID_NOT_FOUND:
+                    message = "Gebruiker niet gevonden";
+                    break;
+ 
                 default:
                     message = "Onbekende fout opgetreden";
                     break;

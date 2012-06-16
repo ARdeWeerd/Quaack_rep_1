@@ -45,11 +45,12 @@ namespace Quaack_data_interactie.dao.impl
             }
         }
 
-        private System.Object lockThis = new System.Object();
+       // private System.Object lockThis = new System.Object();
 
         public List<Bericht> find(string userId)
         {
             List<Bericht> result = new List<Bericht>();
+            
             string strConnString =  @"Data Source='(local)\sqlexpress';Integrated Security=True;Pooling=False;Initial Catalog='NOHSchaatsen'";
 
 
@@ -102,6 +103,17 @@ namespace Quaack_data_interactie.dao.impl
         }
 
         public void save(Bericht bericht)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void update(Bericht bericht)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void delete(Bericht bericht)
         {
             throw new NotImplementedException();
         }

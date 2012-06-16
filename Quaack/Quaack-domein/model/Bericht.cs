@@ -5,6 +5,7 @@ namespace Quaack_domein.model
 {
     public class Bericht
     {
+        private Guid id;
         private string tekst;
         private bool verwijderd;
         private DateTime datumGeplaatst;
@@ -14,6 +15,12 @@ namespace Quaack_domein.model
 
         private Profiel geplaatsDoor;
         private Profiel verwijderdDoor;
+
+        public Guid Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         public Profiel GeplaatsDoor
         {

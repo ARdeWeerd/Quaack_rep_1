@@ -46,6 +46,8 @@
     <Compile Include="dao\BerichtenDao.cs" />
     <Compile Include="dao\Exception\DaoException.cs" />
     <Compile Include="dao\impl\BerichtenDaoImpl.cs" />
+    <Compile Include="dao\impl\ProfielDaoImpl.cs" />
+    <Compile Include="dao\ProfielDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -56,6 +58,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

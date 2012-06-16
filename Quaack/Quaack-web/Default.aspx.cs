@@ -25,6 +25,8 @@ namespace Quaack_web
             {
                 
                 berichten = ServiceUtil.getBerichtenService(Application).find(UserIdTextBox.Text);
+
+                BerichtenService service = ServiceUtil.getBerichtenService(Application);
             }
             catch (ServiceException se)
             {
@@ -40,8 +42,13 @@ namespace Quaack_web
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Profiel profiel = ServiceUtil.getProfielService(Application).find(UserIdTextBox.Text);
-            testProfielTextBox.Text = profiel.Naam;
+            List<String> users = ServiceUtil.getProfielService(Application).findUsers(UserIdTextBox.Text);
+            string tekst = "";
+            foreach (string user in users)
+            {
+                tekst += user;
+            }
+            testProfielTextBox.Text = tekst;
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Quaack_domein.model
     public enum ResultCode
     {
         SUCCES,
-        USERID_NOT_UNIQUE
+        USERID_NOT_UNIQUE,
+        USERID_NOT_FOUND
     }
 }

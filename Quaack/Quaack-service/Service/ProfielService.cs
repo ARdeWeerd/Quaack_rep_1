@@ -9,6 +9,13 @@ namespace Quaack_service.Service
     public interface ProfielService
     {
         /// <summary>
+        /// Ophalen lijst met gebruikersnamen die voldoen aan de zoekopdracht
+        /// </summary>
+        /// <param name="searchPattern"></param>
+        /// <returns>lijst met namen</returns>
+        List<String> findUsers(string searchPattern);
+
+        /// <summary>
         /// Ophalen profiel van gebruiker op userId
         /// </summary>
         /// <param name="userId">userId</param>
@@ -50,7 +57,7 @@ namespace Quaack_service.Service
         /// </summary>
         /// <param name="userId">userId van de te blokkeren gebruiker</param>
         /// <returns>Resultaat van de actie</returns>
-        Result blockAccount(String userId);
+        Result blockAccount(String userId, bool block);
       
     }
 }
