@@ -14,7 +14,7 @@ namespace Quaack_data_interactie.dao.impl
 
         private static object syncRoot = new Object();
 
-        private static string connectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=C:\Users\Edwin\Downloads\Quaack.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
+        private static string connectionString = @"Data Source=.\SQLEXPRESS;AttachDbFilename=c:\test\Quaack.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True";
 
         //private SqlConnection conn = new SqlConnection(ConnectionString);
 
