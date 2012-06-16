@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -46,9 +47,29 @@ namespace Quaack_web
             string tekst = "";
             foreach (string user in users)
             {
-                tekst += user;
+                tekst += user + ", ";
+               
             }
             testProfielTextBox.Text = tekst;
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Profiel p = new Profiel();
+            p.Naam = UserIdTextBox.Text;
+            p.AvatarLokatie = "lokAvatar";
+            p.Emailadres = "test@zomaar.nl";
+            p.MobielNummer = "12345666";
+            p.Profielschets = "Inhoud van de profieltekst";
+            Result res = ServiceUtil.getProfielService(Application).save(p);
+            if (!res.Code.Equals(ResultCode.SUCCES))
+            {
+                testProfielTextBox.Text = res.getMessage();
+            }
+            else
+            {
+                testProfielTextBox.Text = "Hoera, gelukt!!!!!";
+            }
         }
     }
 }

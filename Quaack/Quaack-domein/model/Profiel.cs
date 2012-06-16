@@ -22,6 +22,31 @@ namespace Quaack_domein.model
         private bool permanentGeblokkeerd = false;
         private bool verwijderd = false;
 
+        public override bool Equals(object o)
+        {
+            // Als null dan return false.
+            if (o == null)
+            {
+                return false;
+            }
+
+            // Indien geen cast naar Profiel return false.
+            Profiel p = o as Profiel;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+
+            // Return true als naam is gelijk
+            return (this.Naam == p.Naam);
+        }
+
+        public override int GetHashCode()
+        {
+            //TODO mooie hashcode bedenken
+            return 1;
+        }
+
         public bool TijdelijkGeblokkeerd
         {
             get { return tijdelijkGeblokkeerd; }
@@ -43,7 +68,7 @@ namespace Quaack_domein.model
 
         public Guid Id
         {
-            get { return id; }
+            get { return id;}
             set { id = value; }
         }
 

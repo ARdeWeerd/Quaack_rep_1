@@ -69,8 +69,7 @@ namespace Quaack_service.Service.impl
         {
             try
             {
-                Profiel p = this.profielDao.find(profiel.Naam);
-                if (p != null)
+                if (this.profielDao.findUsers(profiel.Naam).Count > 0)
                 {
                     return new Result(ResultCode.USERID_NOT_UNIQUE);
                 }

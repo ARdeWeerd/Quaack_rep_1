@@ -7,7 +7,13 @@ namespace Quaack_domein.model
 {
     public class Result
     {
-        private ResultCode code;         
+        private ResultCode code;
+
+        public ResultCode Code
+        {
+            get { return code; }
+            set { code = value; }
+        }         
                 
         public Result(ResultCode code)
         {
