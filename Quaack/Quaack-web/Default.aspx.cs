@@ -71,5 +71,11 @@ namespace Quaack_web
                 testProfielTextBox.Text = "Hoera, gelukt!!!!!";
             }
         }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Profiel p = ServiceUtil.getProfielService(Application).find(UserIdTextBox.Text);
+            testProfielTextBox.Text = p.Naam + ", " + p.Emailadres;
+        }
     }
 }

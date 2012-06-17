@@ -17,6 +17,8 @@
         </asp:GridView>
         <asp:Button ID="Button2" runat="server" onclick="Button2_Click" 
             Text="TestAanmakenProfiel" />
+        <asp:Button ID="Button3" runat="server" onclick="Button3_Click" 
+            Text="Ophalen Profiel" />
     </p>
     <input id="btnTestJQuery" type="button" value="Test jQuery" />
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 

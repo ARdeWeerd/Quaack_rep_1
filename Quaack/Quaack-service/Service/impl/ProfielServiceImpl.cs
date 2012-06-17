@@ -7,6 +7,7 @@ using Quaack_domein.model;
 using Quaack_data_interactie;
 using Quaack_data_interactie.dao;
 using Quaack_data_interactie.dao.impl;
+using System.Net.Mail;
 
 namespace Quaack_service.Service.impl
 {
@@ -74,6 +75,7 @@ namespace Quaack_service.Service.impl
                     return new Result(ResultCode.USERID_NOT_UNIQUE);
                 }
                 this.profielDao.save(profiel);
+                SendMail("uglu.duck.quaack@gmail.com", "testTitle", "testBody");
                 return Result.newResultSucces();
             }
             catch (DaoException de)
@@ -201,6 +203,20 @@ namespace Quaack_service.Service.impl
             {
                 throw new ServiceException(de.Message, de);
             }
+        }
+
+        private void SendMail(String emailAddress, String title, String body)
+        {
+            MailMessage mail = new MailMessage("uglu.duck.quaack@gmail.com", emailAddress,
+            title, body);
+            mail.IsBodyHtml = true;
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.Credentials = new System.Net.NetworkCredential(
+            "uglu.duck.quaack@gmail.com", "quaack10");
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
         }
     }
 }

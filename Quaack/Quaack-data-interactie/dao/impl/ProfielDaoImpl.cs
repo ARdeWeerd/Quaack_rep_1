@@ -86,9 +86,42 @@ namespace Quaack_data_interactie.dao.impl
         public Profiel find(string userId)
         {
             Profiel profiel = new Profiel();
-            profiel.Naam = "ProfielVanuitDAO";
-            profiel.Verwijderd = false;
-            return profiel;
+            string selQuery = @"select username, password, profile, email, avatarlocation, mobilenumber, verificationpending, tempblocked, permblocked, removed from profile where username = @USERNAME";
+            SqlConnection conn = null;
+            //Profiel result = new Profiel();
+            try
+            {
+                conn = new SqlConnection(connectionString);
+
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(selQuery, conn);
+                cmd.Parameters.AddWithValue("@USERNAME", userId);
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                DataTable table = ds.Tables[0];
+                if (table.Rows.Count == 0)
+                {
+                    DataRow row = table.Rows[0];
+                    profiel.Naam = (string)row[0];
+                    profiel.Profielschets = (string)row[2];
+                    profiel.Emailadres = (string)row[3];
+                }
+                return profiel;
+
+                
+                
+            }
+            catch (Exception de)
+            {
+                return null;
+                //throw new DaoException("Eris iets misgegaan met zoeken naar users", de);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void save(Profiel profiel)
