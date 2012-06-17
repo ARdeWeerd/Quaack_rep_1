@@ -266,6 +266,13 @@ input.passwordEntry
     border-radius: 5px;
 }
 
+textarea
+{
+    width: 320px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 div.accountInfo
 {
     width: 42%;

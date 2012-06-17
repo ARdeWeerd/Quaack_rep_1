@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +33,7 @@ namespace Quaack_service.Service.impl
         }
 
         /// <summary>
-        /// Propertie voor het verkrijgen van instantie van de class. Er is altijd maar 1 instantie (singleton)
+        /// Property voor het verkrijgen van instantie van de class. Er is altijd maar 1 instantie (singleton)
         /// </summary>
         /// <returns>de instantie van ProfielServiceImpl</returns>
         public static ProfielServiceImpl Instance
@@ -75,7 +75,7 @@ namespace Quaack_service.Service.impl
                     return new Result(ResultCode.USERID_NOT_UNIQUE);
                 }
                 this.profielDao.save(profiel);
-                SendMail("uglu.duck.quaack@gmail.com", "testTitle", "testBody");
+                SendMail("uglu.duck.quaack@gmail.com", "welkom bij Quaack", "bla bla bla bla");
                 return Result.newResultSucces();
             }
             catch (DaoException de)
@@ -205,7 +205,7 @@ namespace Quaack_service.Service.impl
             }
         }
 
-        private void SendMail(String emailAddress, String title, String body)
+               private void SendMail(String emailAddress, String title, String body)
         {
             MailMessage mail = new MailMessage("uglu.duck.quaack@gmail.com", emailAddress,
             title, body);
@@ -220,3 +220,4 @@ namespace Quaack_service.Service.impl
         }
     }
 }
+
