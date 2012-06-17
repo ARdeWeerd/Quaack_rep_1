@@ -101,7 +101,7 @@ namespace Quaack_data_interactie.dao.impl
                 DataSet ds = new DataSet();
                 da.Fill(ds);
                 DataTable table = ds.Tables[0];
-                if (table.Rows.Count == 0)
+                if (table.Rows.Count == 1)
                 {
                     DataRow row = table.Rows[0];
                     profiel.Naam = (string)row[0];

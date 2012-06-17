@@ -205,7 +205,7 @@ namespace Quaack_service.Service.impl
             }
         }
 
-               private void SendMail(String emailAddress, String title, String body)
+        private void SendMail(String emailAddress, String title, String body)
         {
             MailMessage mail = new MailMessage("uglu.duck.quaack@gmail.com", emailAddress,
             title, body);
