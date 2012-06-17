@@ -88,15 +88,7 @@ namespace Quaack_service.Service.impl
         {
             try
             {
-                Profiel p = this.profielDao.find(profiel.Naam);
-                if (p == null)
-                {
-                    return new Result(ResultCode.USERID_NOT_FOUND);
-                }
-                //TODO alle velden die gewijzigd kunnen worden doorlopen
-                p.Profielschets = profiel.Profielschets;
-                p.AvatarLokatie = profiel.AvatarLokatie;
-                this.profielDao.update(p);
+                this.profielDao.update(profiel);
                 return Result.newResultSucces();
             }
             catch (DaoException de)

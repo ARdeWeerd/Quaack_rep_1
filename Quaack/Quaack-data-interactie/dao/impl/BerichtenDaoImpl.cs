@@ -45,8 +45,6 @@ namespace Quaack_data_interactie.dao.impl
             }
         }
 
-       // private System.Object lockThis = new System.Object();
-
         public List<Bericht> find(string userId)
         {
             List<Bericht> result = new List<Bericht>();
@@ -97,6 +95,7 @@ namespace Quaack_data_interactie.dao.impl
 
         }
 
+        
         public Bericht find(int bericht_id)
         {
             throw new NotImplementedException();
