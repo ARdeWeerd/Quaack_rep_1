@@ -335,3 +335,21 @@ div.accountInfo
     text-align: right;
     padding-right: 10px;
 }
+
+/* Classes used on the personal page. */
+.MessagesTable 
+{
+    padding-right:20px;
+}
+    
+.PersonalPeopleIRespondedTo
+{
+    vertical-align:top;
+    text-align:right;
+}
+.PersonalPeopleRespondedToMe
+{
+    text-align:right;
+    vertical-align:top;
+    padding-top:20px;
+}

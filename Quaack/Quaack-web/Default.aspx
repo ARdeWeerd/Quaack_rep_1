@@ -24,6 +24,8 @@
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 
         Text="Test ProfielService" />
     <asp:TextBox ID="testProfielTextBox" runat="server" Width="456px"></asp:TextBox>
+    <br />
+    <asp:HyperLink ID="EigenPagina" runat="server" NavigateUrl="~/EigenPagina.aspx">Eigen Pagina</asp:HyperLink>
 </asp:Content>
 <asp:Content ID="ScriptContent" runat="server" ContentPlaceHolderID="ScriptContent">
     $(function() {
