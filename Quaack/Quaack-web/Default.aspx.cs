@@ -75,7 +75,33 @@ namespace Quaack_web
         protected void Button3_Click(object sender, EventArgs e)
         {
             Profiel p = ServiceUtil.getProfielService(Application).find(UserIdTextBox.Text);
-            testProfielTextBox.Text = p.Naam + ", " + p.Emailadres;
+            if (p != null)
+            {
+                testProfielTextBox.Text = p.Naam + ", " + p.Emailadres;
+            }
+            else
+            {
+                testProfielTextBox.Text = "gebruiker niet gevonden";
+
+            }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Profiel p = ServiceUtil.getProfielService(Application).find(UserIdTextBox.Text);
+            if (p == null)
+            {
+                testProfielTextBox.Text = "te wijzigen profiel bestaat niet";
+            }
+            else
+            {
+                //p.Emailadres = emailTextBox.Text;
+                ServiceUtil.getProfielService(Application).update(p);
+
+            }
+            
+
+
         }
     }
 }

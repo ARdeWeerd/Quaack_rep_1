@@ -5,7 +5,7 @@ namespace Quaack_domein.model
 {
     public class Profiel
     {
-        private Guid id;
+        private int id;
         private string naam;
         private string wachtwoord;
         private string profielschets;
@@ -66,7 +66,7 @@ namespace Quaack_domein.model
             set { verwijderd = value; }
         }
 
-        public Guid Id
+        public int Id
         {
             get { return id;}
             set { id = value; }

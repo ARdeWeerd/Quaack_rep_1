@@ -85,8 +85,35 @@ namespace Quaack_data_interactie.dao.impl
 
         public Profiel find(string userId)
         {
+            Profiel result = findUserWithoutChildren(userId);
+
+            //vullen van de lijst met geblokkeerde gebruikers
+            result.GeblokkeerdeGebruikers = new List<Profiel>();
+            List<string> blockedUsers = getBlockedUsers(userId);
+            foreach (string blockedUser in blockedUsers)
+            {
+                Profiel p = findUserWithoutChildren(blockedUser);
+                result.GeblokkeerdeGebruikers.Add(p);
+            }
+            //TODO doe hetzelfde voor geblokkeerdDoor indien noodzakelijk
+
+            //TODO ophalen van berichten en koppelen aan profiel indien noodzakelijk
+            
+            return result;
+        }
+
+        private List<string> getBlockedUsers(string userId)
+        {
+            //TODO lezen van de gegevens uit de nog niet bestaande koppeltabel voor geblokkeerde gebruikers.
+            return new List<string>();
+        }
+
+
+        private Profiel findUserWithoutChildren(string userid)
+        {
             Profiel profiel = new Profiel();
-            string selQuery = @"select username, password, profile, email, avatarlocation, mobilenumber, verificationpending, tempblocked, permblocked, removed from profile where username = @USERNAME";
+            string selQuery = @"select profileid, username, password, profile, email, avatarlocation, mobilenumber, 
+                                verficationpendingdatetime from profile where username = @USERNAME";
             SqlConnection conn = null;
             //Profiel result = new Profiel();
             try
@@ -95,7 +122,7 @@ namespace Quaack_data_interactie.dao.impl
 
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(selQuery, conn);
-                cmd.Parameters.AddWithValue("@USERNAME", userId);
+                cmd.Parameters.AddWithValue("@USERNAME", userid);
                 SqlDataAdapter da = new SqlDataAdapter();
                 da.SelectCommand = cmd;
                 DataSet ds = new DataSet();
@@ -104,25 +131,29 @@ namespace Quaack_data_interactie.dao.impl
                 if (table.Rows.Count == 1)
                 {
                     DataRow row = table.Rows[0];
-                    profiel.Naam = (string)row[0];
-                    profiel.Profielschets = (string)row[2];
-                    profiel.Emailadres = (string)row[3];
+                    profiel.Id = (int)row[0];
+                    profiel.Naam = (string)row[1];
+                    profiel.Wachtwoord = (string)row[2];
+                    if (!(row[3] is DBNull)) profiel.Profielschets = (string)row[3];
+                    profiel.Emailadres = (string)row[4];
+                    if (!(row[5] is DBNull)) profiel.AvatarLokatie = (string)row[5];
+                    if (!(row[6] is DBNull)) profiel.MobielNummer = (string)row[6];
+                    if (!(row[7] is DBNull)) profiel.VerificationPendingDate = (DateTime)row[7];
                 }
                 return profiel;
-
-                
-                
             }
             catch (Exception de)
             {
-                return null;
-                //throw new DaoException("Eris iets misgegaan met zoeken naar users", de);
+                //return null;
+                throw new DaoException("Eris iets misgegaan met zoeken naar users", de);
             }
             finally
             {
                 conn.Close();
             }
+
         }
+
 
         public void save(Profiel profiel)
         {
@@ -162,7 +193,37 @@ namespace Quaack_data_interactie.dao.impl
 
         public void update(Profiel profiel)
         {
-            throw new NotImplementedException();
+            string updQuery = @"update profile set password = @password, profile = @profile, email = @email, avatarlocation = @avatarlocation,
+                                mobilenumber = @mobilenumber, verificationpending = @verificationpending, tempblocked = @tempblocked, permblocked = @permblocked, removed = @removed
+                               where profileid = @ID";
+            SqlConnection conn = null;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(updQuery, conn);
+                cmd.Parameters.AddWithValue("@ID", profiel.Id);
+                cmd.Parameters.AddWithValue("@password", profiel.Wachtwoord);
+                cmd.Parameters.AddWithValue("@email", profiel.Emailadres);
+                cmd.Parameters.AddWithValue("@profile", profiel.Profielschets);
+                cmd.Parameters.AddWithValue("@avatarlocation", profiel.AvatarLokatie);
+                cmd.Parameters.AddWithValue("@mobilenumber", profiel.MobielNummer);
+                cmd.Parameters.AddWithValue("@verificationpending", false);
+                cmd.Parameters.AddWithValue("@tempblocked", false);
+                cmd.Parameters.AddWithValue("@permblocked", false);
+                cmd.Parameters.AddWithValue("@removed", false);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new DaoException("Er is iets misgegaan met updaten van het profiel", e);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+                
         }
 
         private int getNextId()
@@ -199,8 +260,6 @@ namespace Quaack_data_interactie.dao.impl
             }
 
         }
-
-
 
     }
 }
