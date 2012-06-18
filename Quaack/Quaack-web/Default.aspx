@@ -8,10 +8,8 @@
         Welkom op de Quaack-site
     </h2>
     <p>
-        <asp:Label ID="Label1" runat="server" Text="userid:"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="ZoekTekst:"></asp:Label>
         <asp:TextBox ID="UserIdTextBox" runat="server"></asp:TextBox>
-    &nbsp;email
-        <asp:TextBox ID="emailTextBox" runat="server" Width="196px"></asp:TextBox>
     </p>
     <p>
         <asp:Button ID="ZoekButton" runat="server" Text="Zoek berichten" OnClick="ZoekButton_Click" />
@@ -19,20 +17,19 @@
         </asp:GridView>
         <asp:Button ID="Button2" runat="server" onclick="Button2_Click" 
             Text="TestAanmakenProfiel" />
-        <asp:Button ID="Button3" runat="server" onclick="Button3_Click" 
-            Text="Ophalen Profiel" />
-        <asp:Button ID="Button4" runat="server" onclick="Button4_Click" 
-            Text="Test Update Profiel" />
     </p>
     <input id="btnTestJQuery" type="button" value="Test jQuery" />
     <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 
-        Text="Toon lijst userids" />
+        Text="Test ProfielService" />
     <asp:TextBox ID="testProfielTextBox" runat="server" Width="456px"></asp:TextBox>
 </asp:Content>
 <asp:Content ID="ScriptContent" runat="server" ContentPlaceHolderID="ScriptContent">
-    $(function() {
-        $("#btnTestJQuery").click(function() {
-            alert("jQuery!");
+    <script type="text/javascript">
+
+        $(function() {
+            $("#btnTestJQuery").click(function() {
+                alert("jQuery!");
+            });
         });
-    });
+    </script>
 </asp:Content>

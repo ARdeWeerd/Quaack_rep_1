@@ -8,10 +8,8 @@
     <script type="text/javascript" src="Scripts/jquery-1.7.2.js"></script>
     <asp:ContentPlaceHolder ID="HeadContent" runat="server">
     </asp:ContentPlaceHolder>
-    <%= "<script type=\"text/javascript\">" %>
     <asp:ContentPlaceHolder ID="ScriptContent" runat="server">
     </asp:ContentPlaceHolder>
-    <%= "</script>"%>
 </head>
 <body>
     <form runat="server">

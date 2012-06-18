@@ -95,7 +95,7 @@ namespace Quaack_web
             }
             else
             {
-                p.Emailadres = emailTextBox.Text;
+                //p.Emailadres = emailTextBox.Text;
                 ServiceUtil.getProfielService(Application).update(p);
 
             }
