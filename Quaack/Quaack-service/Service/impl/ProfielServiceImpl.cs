@@ -12,7 +12,7 @@ using System.Net.Mail;
 namespace Quaack_service.Service.impl
 {
     /// <summary>
-    /// author: Edwin Denekamp
+    /// author: Edwin Denekamp 
     /// </summary>
     public sealed class ProfielServiceImpl : ProfielService
     {

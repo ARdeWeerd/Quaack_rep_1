@@ -152,7 +152,6 @@ namespace Quaack_data_interactie.dao.impl
                 conn.Close();
             }
 
-
         }
 
 
